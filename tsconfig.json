@@ -1,0 +1,26 @@
+{
+  "allowImportingTsExtensions": true,
+  "resolveJsonModule": true,
+  "isolatedModules": true,
+
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@assets/*": ["src/assets/*"],
+      "@components/*": ["src/components/*"],
+      "@pages/*": ["src/pages/*"],
+      "@types/*": ["src/types/*"],
+      "@recoil/*": ["src/recoil/*"],
+      "@apis/*": ["src/apis/*"],
+    },
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+  },
+  "include": ["src"],
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}
