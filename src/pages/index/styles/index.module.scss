@@ -47,7 +47,7 @@ $NAVIGATION-HEIGHT: 50px;
       }
     }
     &__imageBox {
-      overflow-y: hidden;
+      overflow-y: scroll;
       display: flex;
       align-items: center;
       justify-content: center;
