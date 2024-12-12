@@ -1,4 +1,9 @@
 import styles from './detailDialog.module.scss'
+import {CardDTO} from "@pages/index/types/card";
+
+interface Props {
+  data: CardDTO
+}
 
 function DetailDialog() {
   return (

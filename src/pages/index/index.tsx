@@ -26,7 +26,7 @@ function index() {
   const [open, setOpen] = useState<boolean>(false) // 이미지 상세 dialog set
 
   const CARD_LIST = imgSelector.results.map((card: CardDTO) => {
-    return <Card data={card} key={card.id} handleDialog={setOpen} />
+    return <Card data={card} key={card.id} handleDialog={setOpen} handleSetData={setImgData} />
   })
 
   return (
@@ -47,7 +47,7 @@ function index() {
         <div className={styles.page__contents__imageBox}>{CARD_LIST}</div>
       </div>
       <Footer />
-      {open && <DetailDialog />}
+      {open && <DetailDialog data={imgData} />}
     </div>
   )
 }
