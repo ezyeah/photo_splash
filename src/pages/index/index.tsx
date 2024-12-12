@@ -7,6 +7,7 @@ import { imageData } from '@/store/selectors/imageSelector'
 
 // component
 import Card from './components/Card'
+import DetailDialog from "@components/common/dialog/DetailDialog";
 
 // page
 import Header from '@components/common/header/Header'
@@ -22,9 +23,10 @@ import { CardDTO } from './types/card'
 function index() {
   const imgSelector  = useRecoilValue(imageData)
   const [imgData, setImgData] = useState<CardDTO[]>([])
+  const [open, setOpen] = useState<boolean>(false) // 이미지 상세 dialog set
 
   const CARD_LIST = imgSelector.results.map((card: CardDTO) => {
-    return <Card data={card} key={card.id} />
+    return <Card data={card} key={card.id} handleDialog={setOpen} />
   })
 
   return (
@@ -45,6 +47,7 @@ function index() {
         <div className={styles.page__contents__imageBox}>{CARD_LIST}</div>
       </div>
       <Footer />
+      {open && <DetailDialog />}
     </div>
   )
 }
