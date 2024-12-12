@@ -1,53 +1,31 @@
-// APIs
-import axios from "axios"
-import { CardDTO } from './types/card'
+// API
+import { useState } from 'react'
+import { useRecoilValue } from 'recoil'
 
-// styles
-import styles from './styles/index.module.scss';
+// store
+import { imageData } from '@/store/selectors/imageSelector'
 
-// pages
+// component
+import Card from './components/Card'
+
+// page
 import Header from '@components/common/header/Header'
 import SearchBar from '@components/common/searchBar/SearchBar'
 import NavBar from '@components/common/navBar/NavBar'
 import Footer from '@components/common/footer/Footer'
 
-// components
-import Card from './components/Card'
-import { useState, useEffect } from "react";
+// style
+import styles from './styles/index.module.scss';
+
+import { CardDTO } from './types/card'
 
 function index() {
-  const [imgUrls, setImgUrles] = useState([])
-  const getData = async () => {
-    // 오픈 API 호출
-    const API_URL = 'http://api.unsplash.com/search/photos'
-    const API_KEY = 'RW7251z9Bjc_WXquCGe6_bNoRgdxulKVlOQJJ-KF5cE'
-    const PER_PAGE = 30
+  const imgSelector  = useRecoilValue(imageData)
+  const [imgData, setImgData] = useState<CardDTO[]>([])
 
-    const searchVal = 'Korea'
-    const pageVal = 100
-
-    try {
-      const res = await axios.get(`${API_URL}?query=${searchVal}&client_id=${API_KEY}&page=${pageVal}&per_page=${PER_PAGE}`)
-
-      console.log(res)
-
-      if (res.status === 200) {
-        setImgUrles(res.data.results)
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const cardList = imgUrls.map((card: CardDTO) => {
-    return (
-      <Card data={card} key={card.id} />
-    )
+  const CARD_LIST = imgSelector.results.map((card: CardDTO) => {
+    return <Card data={card} key={card.id} />
   })
-
-  useEffect(() => {
-    getData()
-  }, [])
 
   return (
     <div className={styles.page}>
@@ -64,9 +42,7 @@ function index() {
             <SearchBar />
           </div>
         </div>
-        <div className={styles.page__contents__imageBox}>
-          {cardList}
-        </div>
+        <div className={styles.page__contents__imageBox}>{CARD_LIST}</div>
       </div>
       <Footer />
     </div>
