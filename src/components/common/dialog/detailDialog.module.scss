@@ -68,10 +68,9 @@
           justify-content: center;
           padding: 4px 6px;
           outline: none;
-          border: none;
-          cursor: pointer;
           border-radius: 6px;
           text-align: center;
+          cursor: pointer;
           background-color: $color-white-000;
           border: 1px solid $color-gray-600;
           color: $color-gray-600;
@@ -80,6 +79,7 @@
     }
 
     &_body {
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;

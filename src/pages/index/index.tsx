@@ -22,10 +22,10 @@ import { CardDTO } from './types/card'
 
 function index() {
   const imgSelector  = useRecoilValue(imageData)
-  const [imgData, setImgData] = useState<CardDTO[]>([])
+  const [imgData, setImgData] = useState<CardDTO>()
   const [open, setOpen] = useState<boolean>(false) // 이미지 상세 dialog set
 
-  const CARD_LIST = imgSelector.results.map((card: CardDTO) => {
+  const CARD_LIST = imgSelector.results.map((card: CardDTO)  => {
     return <Card data={card} key={card.id} handleDialog={setOpen} handleSetData={setImgData} />
   })
 
